@@ -35,7 +35,7 @@
  *   https://davenash.com/2017/10/build-a-blockchain-with-c/.  Then you should
  *   implement it.
  *
- * - //TODO Second, you should extend your implementation so that it is possible to
+ * - Second, you should extend your implementation so that it is possible to
  *   display blocks from the blockchain.
  *
  * - Third, you should transform the program so that it is an always-running
@@ -45,7 +45,7 @@
  *   protocol for how to send data,
  *   //TODO so that it includes the sender ID, the content, etc.
  *
- * - //TODO Fourth, you should ensure that every block gets correctly persisted to a
+ * - Fourth, you should ensure that every block gets correctly persisted to a
  *   file, so that the program can be stopped and started without losing data.
  *   You will need an intelligent file format for this, since blocks have
  *   variable length.

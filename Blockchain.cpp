@@ -80,9 +80,14 @@ Block Blockchain::_GetLastBlock() const {
     return _vChain.back();
 }
 
+//Display block hashes one by one
 void Blockchain::DisplayBlocks() const {
-    std::cout << "Blocks in chain:" << std::endl;
+    std::cout << endl << "Blocks in chain:" << std::endl;
+    int j = 0;
     for (auto i:_vChain) {
-        std::cout << i.GetHash() << std::endl;
+        if (j!=0) {
+            std::cout << "Block " << j << ": " << i.GetHash() << std::endl;
+        }
+        j++;
     }
 }

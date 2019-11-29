@@ -23,7 +23,7 @@ public:
 
     Block(uint32_t nIndexIn, const string &sDataIn, string hash, time_t time);
 
-        string GetHash();
+    string GetHash();
 
     void MineBlock(uint32_t nDifficulty);
 
