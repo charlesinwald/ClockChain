@@ -21,13 +21,14 @@ public:
     //memory and improve efficiency
     Block(uint32_t nIndexIn, const string &sDataIn);
 
-    string GetHash();
+    Block(uint32_t nIndexIn, const string &sDataIn, string hash, time_t time);
+
+        string GetHash();
 
     void MineBlock(uint32_t nDifficulty);
 
     void WriteBlock(ofstream & file);
 
-    bool writing = false;
 
 private:
     uint32_t _nIndex;

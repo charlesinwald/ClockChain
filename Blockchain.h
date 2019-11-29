@@ -15,13 +15,17 @@ class Blockchain {
 public:
     Blockchain();
 
+    void LoadBlocks();
+
     void AddBlock(Block bNew);
 
     void DisplayBlocks() const;
 
+    bool writing = false;
+
+    vector<Block> _vChain;
 private:
     uint32_t _nDifficulty;
-    vector<Block> _vChain;
     ofstream * file;
     ifstream infile;
 

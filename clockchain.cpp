@@ -149,6 +149,9 @@ void close_socket(sig_atomic_t s){
     std::cout << std::endl << "Closing Socket..." << std::endl;
     close(server_fd);
     std::cout << "Socket Closed" << std::endl;
+    if (bChain.writing) {
+        sleep(1);
+    }
     exit(1);
 }
 
@@ -201,6 +204,7 @@ int main(int argc, char *argv[]) {
     //Handle Ctrl C to close socket
     signal(SIGINT,close_socket);
 
+    i = bChain._vChain.size();
     while (true) {
         std::string data = "Block " + to_string(i) + " Data";
         bChain.AddBlock(Block(i, data));

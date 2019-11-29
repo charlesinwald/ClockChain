@@ -6,12 +6,21 @@
 #include "sha256.h"
 
 
-
+//Constructor for mining
 Block::Block(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIndexIn), _sData(sDataIn) {
     //arbitrary number to be used once in the cryptography
     _nNonce = -1;
     //set to current time
     _tTime = time(nullptr);
+}
+
+//Constructor for reading in
+Block::Block(uint32_t nIndexIn, const string &sDataIn, string hash, time_t time) {
+    _nIndex = nIndexIn;
+    _sData = sDataIn;
+    _sHash = hash;
+    _tTime = time;
+
 }
 
 //simple getter method
