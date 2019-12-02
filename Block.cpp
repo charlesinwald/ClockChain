@@ -12,20 +12,25 @@ Block::Block(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIndexIn), _sDa
     _nNonce = -1;
     //set to current time
     _tTime = time(nullptr);
+    senderid = 0;
 }
 
 //Constructor for reading in
-Block::Block(uint32_t nIndexIn, const string &sDataIn, string hash, time_t time) {
+Block::Block(uint32_t nIndexIn, const string &sDataIn, string hash, time_t time, int sender) {
     _nIndex = nIndexIn;
     _sData = sDataIn;
     _sHash = hash;
     _tTime = time;
-
+    senderid = sender;
 }
 
 //simple getter method
 string Block::GetHash() {
     return _sHash;
+}
+
+int Block::GetSender() {
+    return senderid;
 }
 
 void Block::MineBlock(uint32_t nDifficulty) {
@@ -62,6 +67,8 @@ void Block::WriteBlock(ofstream & file) {
     file << sizeof(_sHash) << endl;
     file << _sHash << endl;
     file << _tTime << endl;
+    cout << senderid << endl;
+    file << senderid << endl;
 }
 
 inline string Block::_CalculateHash() const {

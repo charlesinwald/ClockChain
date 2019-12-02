@@ -51,7 +51,7 @@
  *   You will need an intelligent file format for this, since blocks have
  *   variable length.
  *
- * - //TODO Fifth, you should add a timer to your server, so that a new block is added
+ * -  Fifth, you should add a timer to your server, so that a new block is added
  *   every minute.  This will provide the proof of "before" for entries.
  *
  * This assignment is intentionally under-specified.  You should ask questions
@@ -140,7 +140,7 @@ void create_socket(int port) {
     }
     valread = read(new_socket, buffer, 1024);
     printf("%s\n", buffer);
-    bChain.AddBlock(Block(i, buffer));
+    bChain.AddBlock(Block(i, buffer),1);
     send(new_socket, hello, strlen(hello), 0);
     printf("Message sent\n");
 }
@@ -153,6 +153,7 @@ void close_socket(sig_atomic_t s){
     if (bChain.writing) {
         sleep(1);
     }
+    bChain.file->close();
     exit(1);
 }
 
@@ -208,7 +209,7 @@ int main(int argc, char *argv[]) {
     i = bChain._vChain.size();
     while (true) {
         std::string data = "Block " + to_string(i) + " Data";
-        bChain.AddBlock(Block(i, data));
+        bChain.AddBlock(Block(i, data),0);
         i++;
     }
 }

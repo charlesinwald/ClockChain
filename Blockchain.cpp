@@ -7,14 +7,15 @@
 //Start off with a genesis block and a difficulty
 Blockchain::Blockchain() {
     _vChain.emplace_back(Block(0, "Genesis Block"));
-    _nDifficulty = 5;
+    _nDifficulty = 3;
     LoadBlocks();
     file = new ofstream;
     file->open("Blockchain.dat", std::ofstream::out | std::ofstream::app);
 }
 
 //Mine a block and add it to the blockchain
-void Blockchain::AddBlock(Block bNew) {
+void Blockchain::AddBlock(Block bNew, int sender) {
+    bNew.senderid = sender;
     bNew.sPrevHash = _GetLastBlock().GetHash();
     bNew.MineBlock(_nDifficulty);
     //Must set a writing flag so we don't quit during a partially written block
@@ -66,7 +67,11 @@ void Blockchain::LoadBlocks(){
             getline(infile, line);
             long time = stol(line);
             line = "";
-            Block bNew = Block(index,data,hash,time);
+            //Get senderid
+            getline(infile, line);
+            int senderid = stoi(line);
+            line = "";
+            Block bNew = Block(index,data,hash,time,senderid);
             _vChain.push_back(bNew);
         }
         infile.close();
@@ -84,7 +89,7 @@ void Blockchain::DisplayBlocks() const {
     int j = 0;
     for (auto i:_vChain) {
         if (j!=0) {
-            std::cout << "Block " << j << ": " << i.GetHash() << std::endl;
+            std::cout << "Block " << j << ": " << i.GetHash() << " Sender: " << i.GetSender() << std::endl;
         }
         j++;
     }

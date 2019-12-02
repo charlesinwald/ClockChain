@@ -17,16 +17,17 @@ public:
 
     void LoadBlocks();
 
-    void AddBlock(Block bNew);
+    void AddBlock(Block bNew, int sender);
 
     void DisplayBlocks() const;
 
     bool writing = false;
 
     vector<Block> _vChain;
+    ofstream * file;
+
 private:
     uint32_t _nDifficulty;
-    ofstream * file;
     ifstream infile;
 
     Block _GetLastBlock() const;

@@ -16,14 +16,17 @@ class Block {
 public:
     //signature of hash from previous block
     string sPrevHash;
+    int senderid;
 
     //we use const & to pass by reference but cannot change to save
     //memory and improve efficiency
     Block(uint32_t nIndexIn, const string &sDataIn);
 
-    Block(uint32_t nIndexIn, const string &sDataIn, string hash, time_t time);
+    Block(uint32_t nIndexIn, const string &sDataIn, string hash, time_t time, int sender);
 
     string GetHash();
+
+    int GetSender();
 
     void MineBlock(uint32_t nDifficulty);
 

@@ -27,6 +27,8 @@ void usage(const char *progname) {
     cout << "ClockChain Server\n";
     cout << "  Usage: " << progname << " [options]\n";
     cout << "    -p <int> : Port on which to send to (default 41100)\n";
+    cout << "    -u <int> : User ID" << endl;
+    cout << "    -m <int> : Message to send in body" << endl;
     cout << "    -h       : print this message\n";
 }
 
@@ -59,34 +61,41 @@ bool send_reliably(int sd, string msg) {
 int main(int argc, char *argv[]) {
 //    // Config vars that we get via getopt
     int port = 41100;       // random seed
-//    bool show_help = false; // show usage?
-////    int server_fd;
-//    int o;
-//
-//    while ((o = getopt(argc, argv, "p:h")) != -1) {
-//        switch (o) {
-//            case 'h':
-//                show_help = true;
-//                break;
-//            case 'p':
-//                port = atoi(optarg);
-//                break;
-//            default:
-//                show_help = true;
-//                break;
-//        }
-//    }
-//
-//    // Print help and exit
-//    if (show_help) {
-//        usage(basename(argv[0]));
-//        exit(0);
-//    }
+    bool show_help = false; // show usage?
+//    int server_fd;
+    int o;
+    string hello = "Hello from client";
+    int userid = 1;
+    while ((o = getopt(argc, argv, "p:hm:u:")) != -1) {
+        switch (o) {
+            case 'h':
+                show_help = true;
+                break;
+            case 'p':
+                port = atoi(optarg);
+                break;
+            case 'm':
+                hello.assign(optarg);
+                cout << hello << endl;
+                break;
+            case 'u':
+                userid = atoi(optarg);
+                break;
+            default:
+                show_help = true;
+                break;
+        }
+    }
+
+    // Print help and exit
+    if (show_help) {
+        usage(basename(argv[0]));
+        exit(0);
+    }
 //
 //    send_reliably(0,"Whatup");
     int sock = 3, valread;
     struct sockaddr_in serv_addr;
-    char const *hello = "Hello from client";
     char buffer[1024] = {0};
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
     {
@@ -109,7 +118,7 @@ int main(int argc, char *argv[]) {
         printf("\nConnection Failed \n");
         return -1;
     }
-    send(sock , hello , strlen(hello) , 0 );
+    send(sock , hello.c_str() , hello.length() , 0 );
     printf("Hello message sent\n");
     valread = read( sock , buffer, 1024);
     printf("%s\n",buffer );
