@@ -4,8 +4,6 @@
 
 #include "Blockchain.h"
 #include <iomanip>
-
-
 //Start off with a genesis block and a difficulty
 Blockchain::Blockchain() {
     _vChain.emplace_back(Block(0, "Genesis Block"));

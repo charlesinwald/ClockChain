@@ -4,7 +4,7 @@
 
 #include "Block.h"
 #include "sha256.h"
-
+#include <unistd.h>
 
 //Constructor for mining
 Block::Block(uint32_t nIndexIn, const string &sDataIn) : _nIndex(nIndexIn), _sData(sDataIn) {
@@ -46,6 +46,9 @@ void Block::MineBlock(uint32_t nDifficulty) {
     } while (_sHash.substr(0, nDifficulty) != str);
 
     cout << "Block mined: "<< this->_nIndex << " : " << _sHash << endl;
+    //Server timer
+    sleep(60);
+
 }
 
 /*

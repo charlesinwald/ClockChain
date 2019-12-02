@@ -43,7 +43,8 @@
  *   -p command-line option), read data over those connections, and then put
  *   that data into the chain.  Note that you will need to design a reasonable
  *   protocol for how to send data,
- *   //TODO so that it includes the sender ID, the content, etc.
+ *   //TODO so that it includes the sender ID,
+ *   the content, etc.
  *
  * - Fourth, you should ensure that every block gets correctly persisted to a
  *   file, so that the program can be stopped and started without losing data.
