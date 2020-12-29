@@ -19,8 +19,8 @@ securing the timestamp on the blockchain.
  - (Optional) Modify `Blockchain.dat` with desired data.  Currently includes Genesis block and sample data, with correct format.
  - Run `Blockchain.exe`
  - Arguments:
-    -p <int> : Port on which to listen (default 41100)
-    -h help
+    - -p <int> : Port on which to listen (default 41100)
+    - -h help
 # Client Usage:
  - Compile with `Makefile` (tested with g++ version 7)
  - Run `client.exe`
