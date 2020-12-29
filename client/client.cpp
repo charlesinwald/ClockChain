@@ -28,7 +28,7 @@ void usage(const char *progname) {
     cout << "  Usage: " << progname << " [options]\n";
     cout << "    -p <int> : Port on which to send to (default 41100)\n";
     cout << "    -u <int> : User ID" << endl;
-    cout << "    -m <int> : Message to send in body" << endl;
+    cout << "    -m <String> : Message to send in body" << endl;
     cout << "    -h       : print this message\n";
 }
 

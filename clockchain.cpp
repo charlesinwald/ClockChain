@@ -21,11 +21,11 @@
  * and conclude that the block of data had to have been inserted before the
  * clock's time.
  *
- * Clockchain could be a useful idea for an inventor: she could use it to prove
- * that she had an idea before someone else, by showing that her idea is in the
+ * Clockchain could be a useful idea for an inventor: they could use it to prove
+ * that they had an idea before someone else, by showing that their idea is in the
  * clockchain before someone else's idea.  In that case, one might only insert a
  * hash of the idea into the clockchain (because the idea might need to be kept
- * secret), but that's fine... the inventor could still prove that she had the
+ * secret), but that's fine... the inventor could still prove that they had the
  * idea by presenting the idea and showing that it generates the hash value that
  * is in the chain.
  *
@@ -43,7 +43,7 @@
  *   -p command-line option), read data over those connections, and then put
  *   that data into the chain.  Note that you will need to design a reasonable
  *   protocol for how to send data,
- *   //TODO so that it includes the sender ID,
+ *   so that it includes the sender ID,
  *   the content, etc.
  *
  * - Fourth, you should ensure that every block gets correctly persisted to a
@@ -141,6 +141,7 @@ void create_socket(int port) {
     valread = read(new_socket, buffer, 1024);
     printf("%s\n", buffer);
     bChain.AddBlock(Block(i, buffer),1);
+    i++;
     send(new_socket, hello, strlen(hello), 0);
     printf("Message sent\n");
 }

@@ -50,7 +50,7 @@ void Block::MineBlock(uint32_t nDifficulty) {
         _sHash = _CalculateHash();
     } while (_sHash.substr(0, nDifficulty) != str);
 
-    cout << "Block mined: "<< this->_nIndex << " : " << _sHash << endl;
+
     //Server timer
     sleep(60);
 
@@ -67,7 +67,7 @@ void Block::WriteBlock(ofstream & file) {
     file << sizeof(_sHash) << endl;
     file << _sHash << endl;
     file << _tTime << endl;
-    cout << senderid << endl;
+//    cout << senderid << endl;
     file << senderid << endl;
 }
 

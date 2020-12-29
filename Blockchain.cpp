@@ -7,7 +7,7 @@
 //Start off with a genesis block and a difficulty
 Blockchain::Blockchain() {
     _vChain.emplace_back(Block(0, "Genesis Block"));
-    _nDifficulty = 3;
+    _nDifficulty = 1;
     LoadBlocks();
     file = new ofstream;
     file->open("Blockchain.dat", std::ofstream::out | std::ofstream::app);
@@ -23,6 +23,7 @@ void Blockchain::AddBlock(Block bNew, int sender) {
     bNew.WriteBlock(*file);
     writing = false;
     _vChain.push_back(bNew);
+    cout << "Block mined: "<< _vChain.size() << " : " << bNew.GetHash() << endl;
 }
 
 //Read in previous blockchain from file
