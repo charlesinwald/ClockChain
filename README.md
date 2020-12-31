@@ -1,7 +1,7 @@
 # ClockChain
 Proof of concept blockchain that ensures the integrity of chronological events/data.
-For example, one could prove that they submitted a given document at given time before someone else.
-You can submit just a hash of the document if desired, keeping the original document secret, while still
+For example, one could prove that they submitted a given document at a given time before someone else.
+You can submit a hash of the document, keeping the original document secret while still
 securing the timestamp on the blockchain.  
 
 # Potential Uses:
